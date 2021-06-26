@@ -1,0 +1,14 @@
+{
+    "blynk-iot-in-app": {
+        "status": {
+            "error": "error",
+            "connecting": "connecting ",
+            "connected": "connected",
+            "disconnected": "disconnected",
+            "disabled": "disabled"
+        },
+        "errors": {
+            "missing-conf":"Missing configuration"
+        }
+    }
+}

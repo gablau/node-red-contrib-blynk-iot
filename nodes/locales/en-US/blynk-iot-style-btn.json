@@ -1,0 +1,14 @@
+{
+    "blynk-iot-style-btn": {
+        "status": {
+            "error": "error",
+            "connecting": "connecting ",
+            "connected-fixed": "connected to pin V",
+            "disconnected": "disconnected",
+            "disabled": "disabled"
+        },
+        "errors": {
+            "missing-conf":"Missing configuration"
+        }
+    }
+}

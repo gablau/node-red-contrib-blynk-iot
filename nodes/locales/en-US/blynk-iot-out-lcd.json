@@ -1,0 +1,18 @@
+{
+    "blynk-iot-out-lcd": {
+        "status": {
+            "error": "error",
+            "connecting": "connecting ",
+            "connected-fixed": "connected to pin V",
+            "disconnected": "disconnected",
+            "disabled": "disabled"
+        },
+        "warn": {
+            "payload":"## Blynk LCD node does not use the msg.payload property! ##   You must use the property msg.text or msg.text1 to write to the first or second line.",
+            "pin-value":"LCD node - The msg.pin must be between 0 and 255."
+        },
+        "errors": {
+            "missing-conf":"Missing configuration"
+        }
+    }
+}
