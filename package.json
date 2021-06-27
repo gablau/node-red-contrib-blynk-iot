@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-blynk-iot",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Node Red integration with new Blynk IoT Platform",
   "scripts": {
     "lint": "./node_modules/.bin/eslint \"{libs,nodes}/**/*.{js,json,html}\"",
@@ -42,7 +42,7 @@
       "blynk-iot-in-write": "nodes/blynk-iot-in-write.js",
       "blynk-iot-out-write": "nodes/blynk-iot-out-write.js",
       "blynk-iot-out-set-property": "nodes/blynk-iot-out-set-property.js",
-      "blynk-iot-out-email": "nodes/blynk-iot-out-email.js",
+      "blynk-iot-out-sync": "nodes/blynk-iot-out-sync.js",
       "blynk-iot-out-lcd": "nodes/blynk-iot-out-lcd.js",
       "blynk-iot-zergba": "nodes/blynk-iot-zergba.js",
       "blynk-iot-style-btn": "nodes/blynk-iot-style-btn.js",

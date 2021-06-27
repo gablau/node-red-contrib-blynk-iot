@@ -2,7 +2,7 @@
     "blynk-iot-in-app": {
         "status": {
             "error": "error",
-            "connecting": "connecting ",
+            "connecting": "connecting...",
             "connected": "connected",
             "disconnected": "disconnected",
             "disabled": "disabled"

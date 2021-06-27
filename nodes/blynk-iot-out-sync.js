@@ -12,35 +12,35 @@ module.exports = (RED) => {
 
     this.blynkClient = RED.nodes.getNode(this.client);
     if (this.blynkClient) {
-      this.blynkClient.on('opened', (n) => { // eslint-disable-line no-shadow
+      this.blynkClient.on('status-connecting', () => { // eslint-disable-line no-shadow
         node.status({
           fill: 'yellow',
           shape: 'dot',
-          text: RED._('blynk-iot-out-sync.status.connecting') + n,
+          text: RED._('blynk-iot-out-sync.status.connecting'),
         });
       });
-      this.blynkClient.on('connected', () => {
+      this.blynkClient.on('status-connected', () => {
         node.status({
           fill: 'green',
           shape: 'dot',
           text: node.connected_label,
         });
       });
-      this.blynkClient.on('error', () => {
+      this.blynkClient.on('status-error', () => {
         node.status({
           fill: 'red',
           shape: 'ring',
           text: 'blynk-iot-out-sync.status.error',
         });
       });
-      this.blynkClient.on('closed', () => {
+      this.blynkClient.on('status-disconnnected', () => {
         node.status({
           fill: 'red',
           shape: 'ring',
           text: 'blynk-iot-out-sync.status.disconnected',
         });
       });
-      this.blynkClient.on('disabled', () => {
+      this.blynkClient.on('status-disabled', () => {
         node.status({
           fill: 'red',
           shape: 'dot',
@@ -50,18 +50,28 @@ module.exports = (RED) => {
     } else {
       this.error(RED._('blynk-iot-out-sync.errors.missing-conf'));
     }
+
     this.on('input', (msg) => {
       // no input operation if client not connected or disabled
       if (!node.blynkClient || !node.blynkClient.logged) {
+        node.log('## logged is FALSE');
         return;
       }
 
       if (msg.hasOwnProperty('payload')) {
-        const pin = node.pin;
         if (node.pinmode == 1) { // eslint-disable-line eqeqeq
           node.blynkClient.syncAll();
         } else {
-          node.blynkClient.syncVirtual(pin);
+          const pins = [];
+          const tmpPins = node.pin.split(',').map((m) => parseInt(m.trim(), 10));
+          node.log(tmpPins);
+          for (let i = 0; i < tmpPins.length; i++) {
+            tmpPins[i] = +tmpPins[i];
+            if (!Number.isNaN(tmpPins[i]) && tmpPins[i] >= 0 && tmpPins[i] <= 255) {
+              pins.push(tmpPins[i].toString());
+            }
+          }
+          node.blynkClient.syncVirtual(pins.join('\0'));
         }
       }
     });

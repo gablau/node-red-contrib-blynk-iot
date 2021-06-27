@@ -7,8 +7,8 @@ const blynkUtil = require('../libs/blynk-util');
 const blynkLib = require('../libs/blynk-lib');
 
 module.exports = (RED) => {
-  const LIBRARY_VERSION = '2.0.0'; // node-red lib version
-  const LIBRARY_DATE = '2021-06-15'; // node-red lib date
+  const LIBRARY_VERSION = '0.2.0'; // node-red lib version
+  const LIBRARY_DATE = '2021-06-27'; // node-red lib date
 
   const RECONNECT_TIMEOUT_SECONDS = 5; // number of seconds for reconnection when disconnected or socket error
 
@@ -82,9 +82,27 @@ module.exports = (RED) => {
 
     node.log(`LOG PINS ${JSON.stringify(this.log_pins)}`);
 
+    function resetReconnect(err) {
+      node.log(`## FUNC resetReconnect`);
+      node.logged = false;
+      node.log(`## SET logged FALSE`);
+      node.log(`## TLS state: ${node.tlsClient.readyState}`);
+      if (node.tlsClient) {
+        node.tlsClient.destroy(err);
+        node.log(`TLS destroy`);
+        node.emit('status-disconnnected'); // set disconnect on Node-Red UI
+      }
+      if (node.reconnect_timeout) {
+        clearTimeout(node.reconnect_timeout);
+      }
+    }
+
 
     function reconnect() {
+      node.log(`## FUNC reconnect`);
       node.logged = false;
+      node.log(`## SET logged FALSE`);
+      node.log(`## TLS state: ${node.tlsClient.readyState}`);
       if (!node.closing) {
         node.log(`Reconnect in ${node.RECONNECT_TIMEOUT_SECONDS} seconds...`);
         clearTimeout(node.reconnect_timeout);
@@ -96,7 +114,10 @@ module.exports = (RED) => {
 
     function startconn() { // Connect to remote endpoint
       // should not start connection if no server or key
+      node.log(`## FUNC startconn`);
       node.logged = false;
+      node.log(`## SET logged FALSE`);
+      node.emit('status-connecting');
 
       const values = node.path.split(':');
       const host = values[0];
@@ -106,18 +127,14 @@ module.exports = (RED) => {
       const tlsOptions = {
         host: host,
         port: port,
-        rejectUnauthorized: false
+        rejectUnauthorized: false,
       };
 
       node.log(`Start TLS connection: ${tlsOptions.host}:${tlsOptions.port}`);
-      const tlsClient = tls.connect(tlsOptions, function () {
-        // Check if the authorization worked
-        if (tlsClient.authorized) {
-          node.log('Connection authorized by a Certificate Authority.');
-        } else {
-          node.log('Connection not authorized: ' + tlsClient.authorizationError);
+      const tlsClient = tls.connect(tlsOptions, () => {
+        if (!tlsClient.authorized) {
+          node.log(`Connection not authorized: ${tlsClient.authorizationError}`);
         }
-    
         tlsClient.setNoDelay(true);
         tlsClient.setEncoding('binary');
       });
@@ -128,9 +145,11 @@ module.exports = (RED) => {
       node.lastActivityIn = currTimestamp;
       node.lastActivityOut = currTimestamp;
 
+      /*
       tlsClient.on('connect', () => {
         node.log('TLS: connect');
       });
+      */
 
       tlsClient.on('timeout', () => {
         node.log('TLS: timeout');
@@ -138,7 +157,7 @@ module.exports = (RED) => {
 
 
       tlsClient.on('ready', () => {
-        node.log('TLS: ready');
+        // node.log('TLS: ready');
         node.login(node.key);
       });
 
@@ -173,54 +192,67 @@ module.exports = (RED) => {
         } // process message
       });
 
-      tlsClient.on('close', () => {
-        node.log('TLS: close');
+      tlsClient.on('close', (hadError) => {
+        if (hadError) return;
+        // node.log('TLS: close');
         node.log(`Socket closed: ${node.path}`);
-        node.emit('closed');
-        reconnect();
+        node.log(`## TLS state: ${tlsClient.readyState}`);
+        //node.emit('status-disconnnected'); // set disconnect on Node-Red UI
+        if (tlsClient.readyState !== 'open') {
+          node.log('## socket is close -> reconnect');
+          reconnect();
+        }
       });
 
       tlsClient.on('error', (err) => {
-        node.log('TLS: error');
-        node.error(`Socket ${err}`);
-        node.emit('error');
+        // node.log('TLS: error');
+        node.error(`Socket error${err}`);
+        node.log(`## TLS state: ${tlsClient.readyState}`);
+        node.emit('error', err);
         reconnect();
+      });
+
+      tlsClient.on('end', () => {
+        // node.log('TLS: end');
+        node.log(`Socket end: ${node.path}`);
+        node.log(`## TLS state: ${tlsClient.readyState}`);
+        //node.emit('end');
+        //reconnect();
       });
     }
 
-    function resetReconnect() {
-      node.logged = false;
-      if (node.tlsClient) {
-        node.tlsClient.close();
-      }
-      if (node.reconnect_timeout) {
-        clearTimeout(node.reconnect_timeout);
-      }
-    }
 
-    node.on('close', () => {
-      // Workaround https://github.com/einaros/ws/pull/253
-      // Remove listeners from RED.server
+    node.on('close', (removed, done) => {
       node.log('Client Close');
       node.closing = true;
+      node.log(`## TLS state: ${this.tlsClient.readyState}`);
       resetReconnect();
+      if (removed) {
+        // This node has been disabled/deleted
+      } else {
+        // This node is being restarted
+      }
+      done();
     });
 
-    node.on('error', () => {
-      // Workaround https://github.com/einaros/ws/pull/253
-      // Remove listeners from RED.server
+    node.on('error', (err) => {
       node.log('Client Error');
+      node.log(`## TLS state: ${this.tlsClient.readyState}`);
+      node.emit('status-error');
       node.closing = false;
-      resetReconnect();
+      resetReconnect(err);
     });
 
     // test enabled check
     if (this.enabled) {
-      startconn(); // start outbound connection
+      node.emit('status-connecting');
+      //setTimeout(() => {
+        startconn(); // start outbound connection
+      //}, 4000);
     } else {
-      node.emit('disabled');
+      node.emit('status-disabled');
       setTimeout(() => {
-        node.emit('disabled');
+        node.emit('status-disabled');
         node.log('Connection disabled by configuration');
       }, 2000);
     }

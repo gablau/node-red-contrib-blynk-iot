@@ -2,7 +2,7 @@
     "blynk-iot-client": {
         "status": {
             "error": "error",
-            "connecting": "connecting ",
+            "connecting": "connecting... ",
             "connected-dynamic": "connected to dynamic pin",
             "connected-fixed": "connected to pin V",
             "disconnected": "disconnected"

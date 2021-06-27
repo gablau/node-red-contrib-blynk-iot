@@ -102,6 +102,7 @@ const sendMsg = function sendMsg(data) {
   this.lastHeartBeat = currTimestamp;
   this.lastActivityOut = currTimestamp;
   // this.log(rawdata);
+  this.log(`## TLS state: ${this.tlsClient.readyState}`);
   this.tlsClient.write(rawdata);
 };
 
@@ -123,20 +124,30 @@ const processCommand = function processCommand(cmd) {
 
   if (!this.logged) {
     if (cmd.type === MsgType.RSP && cmd.msgId === 1) {
-      if (
-        cmd.len === MsgStatus.OK
-        || cmd.len === MsgStatus.ALREADY_REGISTERED
-      ) {
-        this.log('Client logged');
-        this.logged = true;
-        this.sendInfo();
-        this.emit('connected', '');
-      } else if (cmd.len === MsgStatus.BLYNK_INVALID_TOKEN) {
-        this.log('Invalid auth token');
-      } else if (cmd.len === MsgStatus.NOT_AUTHENTICATED) {
-        this.log('Not autenticated');
-      } else {
-        this.log(`Connect failed. code: ${cmd.len}`);
+      switch (cmd.len) {
+        case MsgStatus.OK:
+        case MsgStatus.ALREADY_REGISTERED:
+          this.log('Client logged');
+          this.logged = true;
+          this.log('## SET logged TRUE');
+          this.sendInfo();
+          this.emit('status-connected', '');
+          break;
+        case MsgStatus.INVALID_TOKEN:
+          this.log('Invalid auth token');
+          this.logged = false;
+          this.log('## SET logged FALSE');
+          break;
+        case MsgStatus.NOT_AUTHENTICATED:
+          this.log('Not autenticated');
+          this.logged = false;
+          this.log('## SET logged FALSE');
+          break;
+        default:
+          this.log(`Connect failed. code: ${getStatusByCode(cmd.len)}`);
+          this.logged = false;
+          this.log('## SET logged FALSE');
+          break;
       }
     }
     if (cmd.type === MsgType.RSP && cmd.len === MsgStatus.NOT_AUTHENTICATED) {
@@ -177,7 +188,7 @@ const processCommand = function processCommand(cmd) {
               case MsgStatus.NOT_AUTHENTICATED:
                 this.log('Not autenticated');
                 break;
-              case MsgStatus.BLYNK_INVALID_TOKEN:
+              case MsgStatus.INVALID_TOKEN:
                 this.log('Invalid auth token');
                 break;
               case MsgStatus.ILLEGAL_COMMAND_BODY:
@@ -233,6 +244,16 @@ const processCommand = function processCommand(cmd) {
           case 'acon':
           case 'adis':
             this.handleAppEvent(cmd.body);
+            break;
+          case 'rtc':
+          case 'utc':
+          case 'ota':
+          case 'vfs':
+          case 'dbg':
+          case 'meta':
+            this.warn(
+              RED._(`Not implemented INTERNAL cmd: ${commandToDebugString(cmd)}`),
+            );
             break;
           default:
             this.warn(

@@ -2,7 +2,7 @@
     "blynk-iot-image-gallery": {
         "status": {
             "error": "error",
-            "connecting": "connecting ",
+            "connecting": "connecting...",
             "connected-fixed": "connected to pin V",
             "disconnected": "disconnected",
             "disabled": "disabled"

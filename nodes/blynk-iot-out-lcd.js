@@ -10,35 +10,35 @@ module.exports = (RED) => {
     if (this.blynkClient) {
       this.blynkClient.registerGenericNode(this, 'LCD');
 
-      this.blynkClient.on('opened', (n) => { // eslint-disable-line no-shadow
+      this.blynkClient.on('status-connecting', () => { // eslint-disable-line no-shadow
         node.status({
           fill: 'yellow',
           shape: 'dot',
-          text: RED._('blynk-iot-out-lcd.status.connecting') + n,
+          text: RED._('blynk-iot-out-lcd.status.connecting') + node.pin,
         });
       });
-      this.blynkClient.on('connected', () => {
+      this.blynkClient.on('status-connected', () => {
         node.status({
           fill: 'green',
           shape: 'dot',
           text: RED._('blynk-iot-out-lcd.status.connected-fixed') + node.pin,
         });
       });
-      this.blynkClient.on('error', () => {
+      this.blynkClient.on('status-error', () => {
         node.status({
           fill: 'red',
           shape: 'ring',
           text: 'blynk-iot-out-lcd.status.error',
         });
       });
-      this.blynkClient.on('closed', () => {
+      this.blynkClient.on('status-disconnnected', () => {
         node.status({
           fill: 'red',
           shape: 'ring',
           text: 'blynk-iot-out-lcd.status.disconnected',
         });
       });
-      this.blynkClient.on('disabled', () => {
+      this.blynkClient.on('status-disabled', () => {
         node.status({
           fill: 'red',
           shape: 'dot',
@@ -51,6 +51,7 @@ module.exports = (RED) => {
     this.on('input', (msg) => {
       // no input operation if client not connected or disabled
       if (!node.blynkClient || !node.blynkClient.logged) {
+        node.log(`## logged is FALSE`);
         return;
       }
 

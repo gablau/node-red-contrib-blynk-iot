@@ -14,35 +14,35 @@ module.exports = (RED) => {
     if (this.blynkClient) {
       this.blynkClient.registerInputNode(this);
 
-      this.blynkClient.on('opened', (n) => { // eslint-disable-line no-shadow
+      this.blynkClient.on('status-connecting', () => { // eslint-disable-line no-shadow
         node.status({
           fill: 'yellow',
           shape: 'dot',
-          text: RED._('blynk-iot-in-write.status.connecting') + n,
+          text: RED._('blynk-iot-in-write.status.connecting'),
         });
       });
-      this.blynkClient.on('connected', () => {
+      this.blynkClient.on('status-connected', () => {
         node.status({
           fill: 'green',
           shape: 'dot',
           text: node.connected_label,
         });
       });
-      this.blynkClient.on('error', () => {
+      this.blynkClient.on('status-error', () => {
         node.status({
           fill: 'red',
           shape: 'ring',
           text: 'blynk-iot-in-write.status.error',
         });
       });
-      this.blynkClient.on('closed', () => {
+      this.blynkClient.on('status-disconnnected', () => {
         node.status({
           fill: 'red',
           shape: 'ring',
           text: 'blynk-iot-in-write.status.disconnected',
         });
       });
-      this.blynkClient.on('disabled', () => {
+      this.blynkClient.on('status-disabled', () => {
         node.status({
           fill: 'red',
           shape: 'dot',
