@@ -53,7 +53,6 @@ module.exports = (RED) => {
       this.on('input', (msg) => {
         // no input operation if client not connected or disabled
         if (!node.blynkClient || !node.blynkClient.logged) {
-          node.log(`## logged is FALSE`);
           return;
         }
 

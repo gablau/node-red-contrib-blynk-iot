@@ -1,5 +1,5 @@
 {
-    "blynk-iot-in-app": {
+    "blynk-iot-logevent": {
         "status": {
             "error": "error",
             "connecting": "connecting...",

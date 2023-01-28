@@ -1,10 +1,9 @@
 {
-    "blynk-iot-in-read": {
+    "blynk-iot-metadata": {
         "status": {
             "error": "error",
             "connecting": "connecting...",
-            "connected-all": "connected to all pins",
-            "connected-fixed": "connected to pin V",
+            "connected": "connected",
             "disconnected": "disconnected",
             "disabled": "disabled"
         },

@@ -21,13 +21,13 @@ srs({ length: 16, alphanumeric: true });
 /* ##### BLYNK STUFF ###### */
 
 // C++ Library Version
-// 1.0.0 - 2021-05-25
+// 1.1.0 - 2022-05-23
 
 // Server Version
 // public cloud
 
 // Blynk library constant
-const BLYNK_VERSION = '1.0.0'; // blynk library version
+const BLYNK_VERSION = '1.1.0'; // blynk library version
 const BLYNK_HEARTBEAT = 45; // seconds
 const BLYNK_PROTOCOL_MAX_LENGTH = 32767; // java Short.MAX_VALUE
 const BLYNK_MAX_CMD_IN_MESSAGE = 1024; // max command in a single message
@@ -101,8 +101,7 @@ const sendMsg = function sendMsg(data) {
   const currTimestamp = getTimestamp();
   this.lastHeartBeat = currTimestamp;
   this.lastActivityOut = currTimestamp;
-  // this.log(rawdata);
-  this.log(`## TLS state: ${this.tlsClient.readyState}`);
+  //this.log(`## TLS state: ${this.tlsClient.readyState}`);
   this.tlsClient.write(rawdata);
 };
 
@@ -129,24 +128,20 @@ const processCommand = function processCommand(cmd) {
         case MsgStatus.ALREADY_REGISTERED:
           this.log('Client logged');
           this.logged = true;
-          this.log('## SET logged TRUE');
           this.sendInfo();
           this.emit('status-connected', '');
           break;
         case MsgStatus.INVALID_TOKEN:
           this.log('Invalid auth token');
           this.logged = false;
-          this.log('## SET logged FALSE');
           break;
         case MsgStatus.NOT_AUTHENTICATED:
           this.log('Not autenticated');
           this.logged = false;
-          this.log('## SET logged FALSE');
           break;
         default:
           this.log(`Connect failed. code: ${getStatusByCode(cmd.len)}`);
           this.logged = false;
-          this.log('## SET logged FALSE');
           break;
       }
     }
@@ -208,7 +203,6 @@ const processCommand = function processCommand(cmd) {
         }
         break;
       case MsgType.HW_LOGIN:
-      case MsgType.LOGIN:
       case MsgType.PING:
         this.sendRsp(MsgType.RSP, this.msgId, MsgStatus.OK);
         break;
@@ -219,9 +213,6 @@ const processCommand = function processCommand(cmd) {
           // input nodes
           case 'vw':
             this.handleWriteEvent(cmd);
-            break;
-          case 'vr':
-            this.handleReadEvent(cmd);
             break;
           case 'pm':
             // skip message "pin mode"
@@ -239,18 +230,20 @@ const processCommand = function processCommand(cmd) {
         }
         break;
       case MsgType.INTERNAL:
-        switch (cmd.body) {
-          // app event node
-          case 'acon':
-          case 'adis':
-            this.handleAppEvent(cmd.body);
+        // eslint-disable-next-line no-case-declarations
+        const data = cmd.body.split('\0');
+        // eslint-disable-next-line no-case-declarations
+        const intCmd = data.shift();
+
+        switch (intCmd) {
+          case 'meta':
+            this.handleMetadataEvent(data);
             break;
           case 'rtc':
           case 'utc':
           case 'ota':
           case 'vfs':
           case 'dbg':
-          case 'meta':
             this.warn(
               RED._(`Not implemented INTERNAL cmd: ${commandToDebugString(cmd)}`),
             );
@@ -306,9 +299,16 @@ const sendInfo = function sendInfo() {
   this.sendMsg(this.blynkCmd(MsgType.INTERNAL, info));
 };
 
+const sendMeta = function sendMeta(action, name, value) {
+  const meta = ['meta', action, name];
+  if (action === 'set') meta.push(value);
+  this.msgId++;
+  this.sendMsg(this.blynkCmd(MsgType.INTERNAL, meta));
+};
+
 /* send ping message */
 const ping = function ping() {
-  if (this.dbg_all || this.dbg_read) {
+  if (this.dbg_all || this.dbg_log) {
     this.log('ping');
   }
   this.lastHeartbeat = getTimestamp();
@@ -359,6 +359,15 @@ const setProperty = function setProperty(vpin, prop, val, msgkey) {
   } else this.sendMsg(msg);
 };
 
+/* send logEvent message */
+const logEvent = function logEvent(name, desc) {
+  if (this.dbg_all || this.dbg_write || this.dbg_log) {
+    this.log(`logEvent: -> ${JSON.stringify([name, desc])}`);
+  }
+  const msg = this.blynkCmd(MsgType.EVENT_LOG, [name, desc]);
+  this.sendMsg(msg);
+};
+
 module.exports = {
   // constants
   BLYNK_VERSION,
@@ -375,10 +384,12 @@ module.exports = {
   // protocol commands
   login,
   sendInfo,
+  sendMeta,
   sendRspIllegalCmd,
   ping,
   syncAll,
   syncVirtual,
   virtualWrite,
   setProperty,
+  logEvent,
 };

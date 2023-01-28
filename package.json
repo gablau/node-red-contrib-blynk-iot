@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-blynk-iot",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Node Red integration with new Blynk IoT Platform",
   "scripts": {
     "lint": "./node_modules/.bin/eslint \"{libs,nodes}/**/*.{js,json,html}\"",
@@ -27,18 +27,17 @@
     "utf8": "^3.0.0"
   },
   "devDependencies": {
-    "eslint": "^6.x.x",
-    "eslint-config-airbnb-base": "^14.x.x",
-    "eslint-plugin-html": "^6.x.x0",
-    "eslint-plugin-import": "^2.x.x",
-    "eslint-plugin-json": "^2.x.x",
+    "eslint": "^8.x.x",
+    "eslint-config-airbnb-base": "^15.x.x",
+    "eslint-plugin-html": "^7.x.x",
+    "eslint-plugin-import": "^2.26.x",
+    "eslint-plugin-json": "^3.x.x",
     "eslint-plugin-progress": "github:gablau/eslint-plugin-progress"
   },
   "node-red": {
+    "version": ">=2.0.0",
     "nodes": {
       "blynk-iot-client": "nodes/blynk-iot-client.js",
-      "blynk-iot-in-app": "nodes/blynk-iot-in-app.js",
-      "blynk-iot-in-read": "nodes/blynk-iot-in-read.js",
       "blynk-iot-in-write": "nodes/blynk-iot-in-write.js",
       "blynk-iot-out-write": "nodes/blynk-iot-out-write.js",
       "blynk-iot-out-set-property": "nodes/blynk-iot-out-set-property.js",
@@ -46,10 +45,12 @@
       "blynk-iot-out-lcd": "nodes/blynk-iot-out-lcd.js",
       "blynk-iot-zergba": "nodes/blynk-iot-zergba.js",
       "blynk-iot-style-btn": "nodes/blynk-iot-style-btn.js",
-      "blynk-iot-image-gallery": "nodes/blynk-iot-image-gallery.js"
+      "blynk-iot-image-gallery": "nodes/blynk-iot-image-gallery.js",
+      "blynk-iot-metadata": "nodes/blynk-iot-metadata.js",
+      "blynk-iot-logevent": "nodes/blynk-iot-logevent.js"
     }
   },
   "engines": {
-    "node": ">=8.16.0"
+    "node": ">=12.22.12"
   }
 }

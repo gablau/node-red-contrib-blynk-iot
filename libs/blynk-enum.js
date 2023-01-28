@@ -2,38 +2,29 @@
 
 const MsgType = {
   RSP: 0,
-
-  // app commands
-  LOGIN: 2,
   PING: 6,
-
-  // HARDWARE commands
-  TWEET: 12,
-  EMAIL: 13,
-  NOTIFY: 14,
   BRIDGE: 15,
   HW_SYNC: 16,
   INTERNAL: 17,
   SMS: 18,
   PROPERTY: 19,
   HW: 20,
+  GROUP: 21,
   HW_LOGIN: 29,
-
   REDIRECT: 41,
   DEBUG_PRINT: 55,
   EVENT_LOG: 64,
   EVENT_CLEAR: 65,
-
 };
 
 const MsgStatus = {
   OK: 200,
   QUOTA_LIMIT_EXCEPTION: 1,
   ILLEGAL_COMMAND: 2,
-  NOT_REGISTERED: 3, // user
-  ALREADY_REGISTERED: 4, // user
-  NOT_AUTHENTICATED: 5, // user
-  NOT_ALLOWED: 6, // user
+  NOT_REGISTERED: 3,
+  ALREADY_REGISTERED: 4,
+  NOT_AUTHENTICATED: 5,
+  NOT_ALLOWED: 6,
   DEVICE_NOT_IN_NETWORK: 7,
   NO_ACTIVE_DASHBOARD: 8,
   INVALID_TOKEN: 9,

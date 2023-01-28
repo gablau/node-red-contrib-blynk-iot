@@ -1,0 +1,302 @@
+[
+  {
+      "id": "5c95bb4a1de0285d",
+      "type": "tab",
+      "label": "05 - Table and LCD widgets",
+      "disabled": false,
+      "info": "",
+      "env": []
+  },
+  {
+      "id": "5674357f8f497f66",
+      "type": "comment",
+      "z": "5c95bb4a1de0285d",
+      "name": "Example using Log Event",
+      "info": "",
+      "x": 150,
+      "y": 60,
+      "wires": []
+  },
+  {
+      "id": "fb8d8fd00b316613",
+      "type": "blynk-iot-out-lcd",
+      "z": "5c95bb4a1de0285d",
+      "name": "",
+      "pin": "101",
+      "client": "8c06e199.b82b28",
+      "x": 560,
+      "y": 360,
+      "wires": []
+  },
+  {
+      "id": "e9397c3d24d8ab51",
+      "type": "function",
+      "z": "5c95bb4a1de0285d",
+      "name": "clear and print ",
+      "func": "msg.clear = true\nmsg.text = \"Hello\"\nmsg.y=0\nmsg.x=5\n\nmsg.text1 = \"World\"\nmsg.y1=1\nmsg.x1=6\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 280,
+      "y": 420,
+      "wires": [
+          [
+              "fb8d8fd00b316613",
+              "b4ce91ae4f5cd43f"
+          ]
+      ]
+  },
+  {
+      "id": "23e0a66ae5267f8f",
+      "type": "inject",
+      "z": "5c95bb4a1de0285d",
+      "name": "inject",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "topic": "",
+      "payload": "255",
+      "payloadType": "num",
+      "x": 110,
+      "y": 420,
+      "wires": [
+          [
+              "e9397c3d24d8ab51"
+          ]
+      ]
+  },
+  {
+      "id": "4fb37cdd3457ae70",
+      "type": "function",
+      "z": "5c95bb4a1de0285d",
+      "name": "clear",
+      "func": "msg.clear = true\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 250,
+      "y": 380,
+      "wires": [
+          [
+              "fb8d8fd00b316613",
+              "b4ce91ae4f5cd43f"
+          ]
+      ]
+  },
+  {
+      "id": "0867390a7f382053",
+      "type": "inject",
+      "z": "5c95bb4a1de0285d",
+      "name": "inject",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "topic": "",
+      "payload": "255",
+      "payloadType": "num",
+      "x": 110,
+      "y": 380,
+      "wires": [
+          [
+              "4fb37cdd3457ae70"
+          ]
+      ]
+  },
+  {
+      "id": "e23ac5f55a342783",
+      "type": "inject",
+      "z": "5c95bb4a1de0285d",
+      "name": "Green",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "topic": "",
+      "payload": "#00FF00",
+      "payloadType": "str",
+      "x": 110,
+      "y": 480,
+      "wires": [
+          [
+              "7e906a9303c8e2ea"
+          ]
+      ]
+  },
+  {
+      "id": "5bc96198ec9c2087",
+      "type": "inject",
+      "z": "5c95bb4a1de0285d",
+      "name": "Blue",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "topic": "",
+      "payload": "#0000FF",
+      "payloadType": "str",
+      "x": 110,
+      "y": 520,
+      "wires": [
+          [
+              "7e906a9303c8e2ea"
+          ]
+      ]
+  },
+  {
+      "id": "7e906a9303c8e2ea",
+      "type": "blynk-iot-out-set-property",
+      "z": "5c95bb4a1de0285d",
+      "name": "Set Color",
+      "pin": "101",
+      "pinmode": "0",
+      "prop": "color",
+      "client": "8c06e199.b82b28",
+      "x": 260,
+      "y": 500,
+      "wires": []
+  },
+  {
+      "id": "3f718b3e9978b1f1",
+      "type": "function",
+      "z": "5c95bb4a1de0285d",
+      "name": "print simple",
+      "func": "msg.text = \"Test print\";\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 270,
+      "y": 340,
+      "wires": [
+          [
+              "fb8d8fd00b316613",
+              "b4ce91ae4f5cd43f"
+          ]
+      ]
+  },
+  {
+      "id": "787943246a7b76dc",
+      "type": "inject",
+      "z": "5c95bb4a1de0285d",
+      "name": "inject",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "topic": "",
+      "payload": "255",
+      "payloadType": "str",
+      "x": 110,
+      "y": 340,
+      "wires": [
+          [
+              "3f718b3e9978b1f1"
+          ]
+      ]
+  },
+  {
+      "id": "51abf851ef4346cf",
+      "type": "comment",
+      "z": "5c95bb4a1de0285d",
+      "name": "Test LCD node: clear, print and color property - V101 LCD",
+      "info": "",
+      "x": 250,
+      "y": 280,
+      "wires": []
+  },
+  {
+      "id": "b4ce91ae4f5cd43f",
+      "type": "debug",
+      "z": "5c95bb4a1de0285d",
+      "name": "",
+      "active": true,
+      "console": "false",
+      "complete": "true",
+      "x": 530,
+      "y": 420,
+      "wires": []
+  },
+  {
+      "id": "f5b53f09768f312d",
+      "type": "blynk-iot-logevent",
+      "z": "5c95bb4a1de0285d",
+      "name": "",
+      "eventcode": "testevent",
+      "description": "",
+      "client": "8c06e199.b82b28",
+      "x": 280,
+      "y": 120,
+      "wires": []
+  },
+  {
+      "id": "c0aa4eb5805232e4",
+      "type": "inject",
+      "z": "5c95bb4a1de0285d",
+      "name": "Set aaa",
+      "props": [
+          {
+              "p": "payload"
+          }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "aaa",
+      "payloadType": "str",
+      "x": 110,
+      "y": 120,
+      "wires": [
+          [
+              "f5b53f09768f312d"
+          ]
+      ]
+  },
+  {
+      "id": "76e6365b26b093e3",
+      "type": "blynk-iot-logevent",
+      "z": "5c95bb4a1de0285d",
+      "name": "",
+      "eventcode": "testevent",
+      "description": "bbb",
+      "client": "8c06e199.b82b28",
+      "x": 280,
+      "y": 200,
+      "wires": []
+  },
+  {
+      "id": "6bb88f788465b8ed",
+      "type": "inject",
+      "z": "5c95bb4a1de0285d",
+      "name": "Set ",
+      "props": [
+          {
+              "p": "payload"
+          }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "",
+      "payloadType": "str",
+      "x": 110,
+      "y": 200,
+      "wires": [
+          [
+              "76e6365b26b093e3"
+          ]
+      ]
+  },
+  {
+      "id": "8c06e199.b82b28",
+      "type": "blynk-iot-client",
+      "name": "Blynk IoT Example",
+      "path": "blynk.cloud",
+      "key": "your-auth-token-here",
+      "tmpl": "your-template-id-here",
+      "dbg_all": true,
+      "dbg_log": false,
+      "dbg_prop": false,
+      "dbg_sync": false,
+      "dbg_low": true,
+      "dbg_pins": "",
+      "multi_cmd": true,
+      "enabled": true
+  }
+]

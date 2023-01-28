@@ -2,14 +2,6 @@
 
     // eslint-disable-next-line func-names
     (function () {
-      function validPin(tmppin) {
-        const tmpPin = parseInt(tmppin, 10);
-        if (Number.isInteger(tmpPin) && tmpPin >= 0 && tmpPin <= 255) {
-          return true;
-        }
-        return false;
-      }
-
       function onEditSave() {
       }
 
@@ -17,23 +9,23 @@
       }
     
       function label() {
-        const type = 'zeRGBa';
-        const pin = (validPin(this.pin)) ? `Pin V${this.pin} - ${type}` : 'pin error';
-        return this.name || pin;
+        if (this.eventcode !== '') return this.eventcode;
+        return this.name;
       }
     
-  RED.nodes.registerType('blynk-iot-zergba', {
+  RED.nodes.registerType('blynk-iot-logevent', {
         category: 'Blynk IoT',
-        paletteLabel: 'zergba',
+        paletteLabel: 'log event',
         defaults: {
           name: { value: '' },
-          pin: { value: '', required: true, validate: RED.validators.regex(/^([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$/) },
+          eventcode: { value: '' },
+          description: { value: '' },
           client: { type: 'blynk-iot-client', required: true },
         },
         color: '#8be8c8',
         inputs: 1,
-        outputs: 1,
-        icon: 'zergba.png',
+        outputs: 0,
+        icon: 'font-awesome/fa-list',
         align: 'right',
         labelStyle() {
           return this.name ? 'node_label_italic' : '';
@@ -46,24 +38,28 @@
 </script>  
 
 <!-- Blynk out Node - Write -->
-<script type="text/x-red" data-template-name="blynk-iot-zergba">
+<script type="text/x-red" data-template-name="blynk-iot-logevent">
     <div class="form-row" id="client-row">
         <label for="node-input-client"><i class="fa fa-bookmark"></i> <span>Connection</span></label>
         <input type="text" id="node-input-client">
     </div>
-    <div class="form-row" id="div-write-pin">
-        <label for="node-input-pin"><i class="fa fa-dot-circle-o"></i> <span>Virtual Pin</span></label>
-        <input type="number" id="node-input-pin"  min="0" max="255" placeholder="pin">
-     </div>
+    <div class="form-row">
+      <label for="node-input-eventcode"><i class="fa fa-tags"></i> <span>Event Code</span></label>
+      <input type="text" id="node-input-eventcode">
+    </div>
+    <div class="form-row">
+      <label for="node-input-description"><i class="fa fa-tags"></i> <span>Description</span></label>
+      <input type="text" id="node-input-description">
+    </div>
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> <span>Name</span></label>
         <input type="text" id="node-input-name" data-i18n="[placeholder]node-red:common.label.name">
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="blynk-iot-zergba">
-    <p>Blynk zeRGBa node.</p>
-    <p>For use with Blynk app zeRGBa Widget in merge mode.</p>
+<script type="text/x-red" data-help-name="blynk-iot-logevent">
+    <p>Blynk logevent node.</p>
+    <p>For use with Blynk app logevent Widget in merge mode.</p>
     <p>To select the color you can use the following methods:<p>
     <p>Set <code>msg.hex</code> with hex notation color. (ex. <code>#ff0000</code> for red)<br/>
      Set <code>msg.r</code> <code>msg.g</code> <code>msg.b</code> with the relative integer value. (ex. <code>msg.r = 255; msg.g = 0; msg.b = 0; </code> for red)<br/>
@@ -89,6 +85,7 @@
     <p>
     <p class="form-tips">
         Official documentation: 
-        <a href="https://docs.blynk.io/en/blynk.apps/widgets-app#zergba">zeRGBa</a>
+        <a href="https://docs.blynk.io/en/getting-started/events-tutorial">Events</a>
+        <a href="https://docs.blynk.io/en/blynk.edgent-firmware-api/log-event">Log Event</a>
     <p>
 </script>

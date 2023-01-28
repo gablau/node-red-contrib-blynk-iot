@@ -1,0 +1,295 @@
+[
+    {
+        "id": "a969aa84db39cff4",
+        "type": "tab",
+        "label": "06 - Zergba and Styled Button",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e3b9660cc14dbc03",
+        "type": "blynk-iot-zergba",
+        "z": "a969aa84db39cff4",
+        "name": "",
+        "pin": "0",
+        "client": "8c06e199.b82b28",
+        "x": 550,
+        "y": 180,
+        "wires": [
+            [
+                "761935aab3745d31"
+            ]
+        ]
+    },
+    {
+        "id": "5b53b2fa45a1c312",
+        "type": "inject",
+        "z": "a969aa84db39cff4",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 90,
+        "y": 140,
+        "wires": [
+            [
+                "79f9c9684ce1a735"
+            ]
+        ]
+    },
+    {
+        "id": "761935aab3745d31",
+        "type": "debug",
+        "z": "a969aa84db39cff4",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 730,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "79f9c9684ce1a735",
+        "type": "function",
+        "z": "a969aa84db39cff4",
+        "name": "255+\"\\0\"+0+\"\\0\"+0",
+        "func": "msg.payload = \"gr\"+\"\\0\"+245+\"\\0\"+0\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 270,
+        "y": 140,
+        "wires": [
+            [
+                "e3b9660cc14dbc03"
+            ]
+        ]
+    },
+    {
+        "id": "043d0c463b7c60f5",
+        "type": "inject",
+        "z": "a969aa84db39cff4",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 90,
+        "y": 180,
+        "wires": [
+            [
+                "102fe399b77651bc"
+            ]
+        ]
+    },
+    {
+        "id": "102fe399b77651bc",
+        "type": "function",
+        "z": "a969aa84db39cff4",
+        "name": "r255 g34 b22",
+        "func": "msg.r = 255;\nmsg.g = 34;\nmsg.b = 22;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 280,
+        "y": 180,
+        "wires": [
+            [
+                "e3b9660cc14dbc03"
+            ]
+        ]
+    },
+    {
+        "id": "c37b77c4777aca5c",
+        "type": "inject",
+        "z": "a969aa84db39cff4",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 90,
+        "y": 100,
+        "wires": [
+            [
+                "294aa794c97fe4a3"
+            ]
+        ]
+    },
+    {
+        "id": "294aa794c97fe4a3",
+        "type": "function",
+        "z": "a969aa84db39cff4",
+        "name": "#34DE01",
+        "func": "msg.hex = \"#34JE01\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 300,
+        "y": 100,
+        "wires": [
+            [
+                "e3b9660cc14dbc03"
+            ]
+        ]
+    },
+    {
+        "id": "938f74e48f163041",
+        "type": "inject",
+        "z": "a969aa84db39cff4",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0;0;255",
+        "payloadType": "str",
+        "x": 310,
+        "y": 220,
+        "wires": [
+            [
+                "e3b9660cc14dbc03"
+            ]
+        ]
+    },
+    {
+        "id": "504dbb013ba3a450",
+        "type": "inject",
+        "z": "a969aa84db39cff4",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 90,
+        "y": 260,
+        "wires": [
+            [
+                "f08d0f32efc39366"
+            ]
+        ]
+    },
+    {
+        "id": "f08d0f32efc39366",
+        "type": "function",
+        "z": "a969aa84db39cff4",
+        "name": "[0, 255, 255]",
+        "func": "msg.payload = [0, 352, -5]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 260,
+        "wires": [
+            [
+                "e3b9660cc14dbc03"
+            ]
+        ]
+    },
+    {
+        "id": "d4201f70f72c6bc0",
+        "type": "comment",
+        "z": "a969aa84db39cff4",
+        "name": "Example using Zergba widget",
+        "info": "",
+        "x": 140,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "cb89d1de2a22c8c3",
+        "type": "blynk-iot-style-btn",
+        "z": "a969aa84db39cff4",
+        "name": "",
+        "pin": "5",
+        "prop": 0,
+        "onlabel": "ON",
+        "offlabel": "OFF",
+        "oncolor": "#00ff00",
+        "onbackcolor": "#000040",
+        "offcolor": "#ff0000",
+        "offbackcolor": "#000000",
+        "client": "8c06e199.b82b28",
+        "x": 300,
+        "y": 400,
+        "wires": [
+            [
+                "4a96c4bc01882fb7"
+            ]
+        ]
+    },
+    {
+        "id": "9635f78f94138256",
+        "type": "inject",
+        "z": "a969aa84db39cff4",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 90,
+        "y": 400,
+        "wires": [
+            [
+                "cb89d1de2a22c8c3"
+            ]
+        ]
+    },
+    {
+        "id": "4a96c4bc01882fb7",
+        "type": "debug",
+        "z": "a969aa84db39cff4",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 510,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "4784acabecb9696b",
+        "type": "comment",
+        "z": "a969aa84db39cff4",
+        "name": "Example using Styled Button widget",
+        "info": "",
+        "x": 160,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "8c06e199.b82b28",
+        "type": "blynk-iot-client",
+        "name": "Blynk IoT Example",
+        "path": "blynk.cloud",
+        "key": "your-auth-token-here",
+        "tmpl": "your-template-id-here",
+        "dbg_all": true,
+        "dbg_log": false,
+        "dbg_prop": false,
+        "dbg_sync": false,
+        "dbg_low": true,
+        "dbg_pins": "",
+        "multi_cmd": true,
+        "enabled": true
+    }
+]

@@ -30,7 +30,7 @@ function commandToDebugString(cmd) {
     return `Cmd: ${cmd.typeString}, Id: ${cmd.msgId}, responseCode: ${getStatusByCode(cmd.len)}`;
   }
   let logdata = cmd.body;
-  if (cmd.type === MsgType.LOGIN || cmd.type === MsgType.HW_LOGIN ) logdata = String(`********************************${cmd.body.slice(-5)}`).slice(-32);
+  if (cmd.type === MsgType.HW_LOGIN ) logdata = String(`********************************${cmd.body.slice(-5)}`).slice(-32);
   if (cmd.type === MsgType.BRIDGE) {
     const values = cmd.body.split('\0');
     if (values.length === 3 && values[1] === 'i') {

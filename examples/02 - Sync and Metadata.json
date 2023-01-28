@@ -1,0 +1,360 @@
+[
+    {
+        "id": "d24f3c8437c9a7b1",
+        "type": "tab",
+        "label": "03 - Sync and Bridge",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9c9da03370354270",
+        "type": "blynk-iot-out-sync",
+        "z": "d24f3c8437c9a7b1",
+        "name": "",
+        "pin": "21",
+        "pinmode": 0,
+        "client": "8c06e199.b82b28",
+        "x": 300,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "163c89e335e6b40b",
+        "type": "inject",
+        "z": "d24f3c8437c9a7b1",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 130,
+        "y": 100,
+        "wires": [
+            [
+                "9c9da03370354270"
+            ]
+        ]
+    },
+    {
+        "id": "ef5c0852cd1d73e3",
+        "type": "blynk-iot-out-sync",
+        "z": "d24f3c8437c9a7b1",
+        "name": "",
+        "pin": "21",
+        "pinmode": "1",
+        "client": "8c06e199.b82b28",
+        "x": 290,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "0aca19a3ec9e50cc",
+        "type": "inject",
+        "z": "d24f3c8437c9a7b1",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "ef5c0852cd1d73e3"
+            ]
+        ]
+    },
+    {
+        "id": "7ebe7e188130563d",
+        "type": "blynk-iot-in-write",
+        "z": "d24f3c8437c9a7b1",
+        "name": "",
+        "pin": "0",
+        "pin_all": 0,
+        "client": "8c06e199.b82b28",
+        "x": 170,
+        "y": 360,
+        "wires": [
+            [
+                "de6af1a616f132c5"
+            ]
+        ]
+    },
+    {
+        "id": "de6af1a616f132c5",
+        "type": "debug",
+        "z": "d24f3c8437c9a7b1",
+        "name": "",
+        "active": true,
+        "console": false,
+        "complete": "true",
+        "x": 350,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "21ba02273e8b3efc",
+        "type": "blynk-iot-out-sync",
+        "z": "d24f3c8437c9a7b1",
+        "name": "",
+        "pin": "0",
+        "pinmode": 0,
+        "client": "8c06e199.b82b28",
+        "x": 300,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "8733e6f42a235892",
+        "type": "inject",
+        "z": "d24f3c8437c9a7b1",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 130,
+        "y": 300,
+        "wires": [
+            [
+                "21ba02273e8b3efc"
+            ]
+        ]
+    },
+    {
+        "id": "412d08da1f8e9fc7",
+        "type": "comment",
+        "z": "d24f3c8437c9a7b1",
+        "name": "Example Sync and SyncAll",
+        "info": "",
+        "x": 150,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "5f23d7dda2146297",
+        "type": "comment",
+        "z": "d24f3c8437c9a7b1",
+        "name": "Example send sync and and receive message",
+        "info": "",
+        "x": 210,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "26957aee7a786102",
+        "type": "comment",
+        "z": "d24f3c8437c9a7b1",
+        "name": "Example receive precise metadata",
+        "info": "",
+        "x": 180,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "4460b7602810f475",
+        "type": "blynk-iot-metadata",
+        "z": "d24f3c8437c9a7b1",
+        "name": "",
+        "metaname": "",
+        "action": "bycode",
+        "client": "8c06e199.b82b28",
+        "x": 380,
+        "y": 820,
+        "wires": [
+            [
+                "2130b1178119816a"
+            ]
+        ]
+    },
+    {
+        "id": "58fe83e6f7762896",
+        "type": "inject",
+        "z": "d24f3c8437c9a7b1",
+        "name": "Get Device Name",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "action",
+                "v": "get",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Device Name",
+        "payloadType": "str",
+        "x": 160,
+        "y": 820,
+        "wires": [
+            [
+                "4460b7602810f475"
+            ]
+        ]
+    },
+    {
+        "id": "276cdc6b132fb1cf",
+        "type": "inject",
+        "z": "d24f3c8437c9a7b1",
+        "name": "Set Device Name",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "action",
+                "v": "set",
+                "vt": "str"
+            },
+            {
+                "p": "value",
+                "v": "New Device Name",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Device Name",
+        "payloadType": "str",
+        "x": 160,
+        "y": 880,
+        "wires": [
+            [
+                "4460b7602810f475"
+            ]
+        ]
+    },
+    {
+        "id": "2130b1178119816a",
+        "type": "debug",
+        "z": "d24f3c8437c9a7b1",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "4e1eceaa40775e78",
+        "type": "blynk-iot-metadata",
+        "z": "d24f3c8437c9a7b1",
+        "name": "",
+        "metaname": "Device Name",
+        "action": "get",
+        "client": "8c06e199.b82b28",
+        "x": 170,
+        "y": 500,
+        "wires": [
+            [
+                "5ffc086665a18e7e"
+            ]
+        ]
+    },
+    {
+        "id": "5ffc086665a18e7e",
+        "type": "debug",
+        "z": "d24f3c8437c9a7b1",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "7b3e5225e5b7dae4",
+        "type": "comment",
+        "z": "d24f3c8437c9a7b1",
+        "name": "Example receive all metadata",
+        "info": "",
+        "x": 160,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "381a2ca8c485f52f",
+        "type": "blynk-iot-metadata",
+        "z": "d24f3c8437c9a7b1",
+        "name": "get - All metadata",
+        "metaname": "",
+        "action": "get",
+        "client": "8c06e199.b82b28",
+        "x": 140,
+        "y": 660,
+        "wires": [
+            [
+                "4220991c06994ad8"
+            ]
+        ]
+    },
+    {
+        "id": "4220991c06994ad8",
+        "type": "debug",
+        "z": "d24f3c8437c9a7b1",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "eadf18f07b3c9c8a",
+        "type": "comment",
+        "z": "d24f3c8437c9a7b1",
+        "name": "Example set / get specific metadata",
+        "info": "",
+        "x": 180,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "8c06e199.b82b28",
+        "type": "blynk-iot-client",
+        "name": "Blynk IoT Example",
+        "path": "blynk.cloud",
+        "key": "your-auth-token-here",
+        "tmpl": "your-template-id-here",
+        "dbg_all": true,
+        "dbg_log": false,
+        "dbg_prop": false,
+        "dbg_sync": false,
+        "dbg_low": true,
+        "dbg_pins": "",
+        "multi_cmd": true,
+        "enabled": true
+    }
+]

@@ -1,0 +1,1008 @@
+[
+  {
+      "id": "eb8863180e19d913",
+      "type": "tab",
+      "label": "07 - Image Gallery widget",
+      "disabled": false,
+      "info": "",
+      "env": []
+  },
+  {
+      "id": "94f9eda8e37e07dd",
+      "type": "blynk-iot-image-gallery",
+      "z": "eb8863180e19d913",
+      "name": "",
+      "pin": "10",
+      "onlabel": "ON",
+      "offlabel": "OFF",
+      "oncolor": "#000000",
+      "onbackcolor": "#ffffff",
+      "offcolor": "#ffffff",
+      "offbackcolor": "#000000",
+      "client": "8c06e199.b82b28",
+      "x": 710,
+      "y": 160,
+      "wires": []
+  },
+  {
+      "id": "25145c09492da92a",
+      "type": "change",
+      "z": "eb8863180e19d913",
+      "name": "img 1",
+      "rules": [
+          {
+              "t": "set",
+              "p": "payload",
+              "pt": "msg",
+              "to": "1",
+              "tot": "str"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 230,
+      "y": 700,
+      "wires": [
+          [
+              "94f9eda8e37e07dd"
+          ]
+      ]
+  },
+  {
+      "id": "de15d9bb086851b2",
+      "type": "change",
+      "z": "eb8863180e19d913",
+      "name": "img 2",
+      "rules": [
+          {
+              "t": "set",
+              "p": "payload",
+              "pt": "msg",
+              "to": "2",
+              "tot": "str"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 230,
+      "y": 740,
+      "wires": [
+          [
+              "94f9eda8e37e07dd"
+          ]
+      ]
+  },
+  {
+      "id": "87a7872ff588ec93",
+      "type": "change",
+      "z": "eb8863180e19d913",
+      "name": "img 3",
+      "rules": [
+          {
+              "t": "set",
+              "p": "payload",
+              "pt": "msg",
+              "to": "3",
+              "tot": "str"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 230,
+      "y": 780,
+      "wires": [
+          [
+              "94f9eda8e37e07dd"
+          ]
+      ]
+  },
+  {
+      "id": "966bf3e8bd078fc5",
+      "type": "inject",
+      "z": "eb8863180e19d913",
+      "name": "x",
+      "props": [
+          {
+              "p": "payload",
+              "v": "true",
+              "vt": "bool"
+          },
+          {
+              "p": "topic",
+              "v": "",
+              "vt": "str"
+          }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "true",
+      "payloadType": "bool",
+      "x": 110,
+      "y": 700,
+      "wires": [
+          [
+              "25145c09492da92a"
+          ]
+      ]
+  },
+  {
+      "id": "90e9b102eca1b83b",
+      "type": "inject",
+      "z": "eb8863180e19d913",
+      "name": "x",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "true",
+      "payloadType": "bool",
+      "x": 110,
+      "y": 740,
+      "wires": [
+          [
+              "de15d9bb086851b2"
+          ]
+      ]
+  },
+  {
+      "id": "fc28abaf38137ce2",
+      "type": "inject",
+      "z": "eb8863180e19d913",
+      "name": "x",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "true",
+      "payloadType": "bool",
+      "x": 110,
+      "y": 780,
+      "wires": [
+          [
+              "87a7872ff588ec93"
+          ]
+      ]
+  },
+  {
+      "id": "434701479ac4f9c5",
+      "type": "change",
+      "z": "eb8863180e19d913",
+      "name": "op 10",
+      "rules": [
+          {
+              "t": "set",
+              "p": "topic",
+              "pt": "msg",
+              "to": "write-property",
+              "tot": "str"
+          },
+          {
+              "t": "set",
+              "p": "opacity",
+              "pt": "msg",
+              "to": "10",
+              "tot": "num"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 230,
+      "y": 120,
+      "wires": [
+          [
+              "94f9eda8e37e07dd"
+          ]
+      ]
+  },
+  {
+      "id": "566999403096e88f",
+      "type": "inject",
+      "z": "eb8863180e19d913",
+      "name": "x",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "true",
+      "payloadType": "bool",
+      "x": 110,
+      "y": 120,
+      "wires": [
+          [
+              "434701479ac4f9c5"
+          ]
+      ]
+  },
+  {
+      "id": "99b4a28776a954eb",
+      "type": "change",
+      "z": "eb8863180e19d913",
+      "name": "op 50",
+      "rules": [
+          {
+              "t": "set",
+              "p": "topic",
+              "pt": "msg",
+              "to": "write-property",
+              "tot": "str"
+          },
+          {
+              "t": "set",
+              "p": "opacity",
+              "pt": "msg",
+              "to": "50",
+              "tot": "num"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 230,
+      "y": 160,
+      "wires": [
+          [
+              "94f9eda8e37e07dd"
+          ]
+      ]
+  },
+  {
+      "id": "550b0776a4c328ea",
+      "type": "inject",
+      "z": "eb8863180e19d913",
+      "name": "x",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "true",
+      "payloadType": "bool",
+      "x": 110,
+      "y": 160,
+      "wires": [
+          [
+              "99b4a28776a954eb"
+          ]
+      ]
+  },
+  {
+      "id": "ab113b5ec057b68c",
+      "type": "change",
+      "z": "eb8863180e19d913",
+      "name": "op 100",
+      "rules": [
+          {
+              "t": "set",
+              "p": "topic",
+              "pt": "msg",
+              "to": "write-property",
+              "tot": "str"
+          },
+          {
+              "t": "set",
+              "p": "opacity",
+              "pt": "msg",
+              "to": "100",
+              "tot": "num"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 240,
+      "y": 200,
+      "wires": [
+          [
+              "94f9eda8e37e07dd"
+          ]
+      ]
+  },
+  {
+      "id": "1673d33dbee85dc9",
+      "type": "inject",
+      "z": "eb8863180e19d913",
+      "name": "x",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "true",
+      "payloadType": "bool",
+      "x": 110,
+      "y": 200,
+      "wires": [
+          [
+              "ab113b5ec057b68c"
+          ]
+      ]
+  },
+  {
+      "id": "e6a540f9893d7ae8",
+      "type": "change",
+      "z": "eb8863180e19d913",
+      "name": "sc 10",
+      "rules": [
+          {
+              "t": "set",
+              "p": "topic",
+              "pt": "msg",
+              "to": "write-property",
+              "tot": "str"
+          },
+          {
+              "t": "set",
+              "p": "scale",
+              "pt": "msg",
+              "to": "10",
+              "tot": "num"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 230,
+      "y": 300,
+      "wires": [
+          [
+              "94f9eda8e37e07dd"
+          ]
+      ]
+  },
+  {
+      "id": "477e61e37317d767",
+      "type": "inject",
+      "z": "eb8863180e19d913",
+      "name": "x",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "true",
+      "payloadType": "bool",
+      "x": 110,
+      "y": 300,
+      "wires": [
+          [
+              "e6a540f9893d7ae8"
+          ]
+      ]
+  },
+  {
+      "id": "7fca06f4562680e6",
+      "type": "change",
+      "z": "eb8863180e19d913",
+      "name": "sc 50",
+      "rules": [
+          {
+              "t": "set",
+              "p": "topic",
+              "pt": "msg",
+              "to": "write-property",
+              "tot": "str"
+          },
+          {
+              "t": "set",
+              "p": "scale",
+              "pt": "msg",
+              "to": "50",
+              "tot": "num"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 230,
+      "y": 340,
+      "wires": [
+          [
+              "94f9eda8e37e07dd"
+          ]
+      ]
+  },
+  {
+      "id": "817d12737b1a4dc6",
+      "type": "inject",
+      "z": "eb8863180e19d913",
+      "name": "x",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "true",
+      "payloadType": "bool",
+      "x": 110,
+      "y": 340,
+      "wires": [
+          [
+              "7fca06f4562680e6"
+          ]
+      ]
+  },
+  {
+      "id": "14e7433fbbefc529",
+      "type": "change",
+      "z": "eb8863180e19d913",
+      "name": "sc 100",
+      "rules": [
+          {
+              "t": "set",
+              "p": "topic",
+              "pt": "msg",
+              "to": "write-property",
+              "tot": "str"
+          },
+          {
+              "t": "set",
+              "p": "scale",
+              "pt": "msg",
+              "to": "100",
+              "tot": "num"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 230,
+      "y": 380,
+      "wires": [
+          [
+              "94f9eda8e37e07dd"
+          ]
+      ]
+  },
+  {
+      "id": "0db7941c912df593",
+      "type": "inject",
+      "z": "eb8863180e19d913",
+      "name": "x",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "true",
+      "payloadType": "bool",
+      "x": 110,
+      "y": 380,
+      "wires": [
+          [
+              "14e7433fbbefc529"
+          ]
+      ]
+  },
+  {
+      "id": "3cb1cca8fef0991b",
+      "type": "change",
+      "z": "eb8863180e19d913",
+      "name": "rt 0",
+      "rules": [
+          {
+              "t": "set",
+              "p": "topic",
+              "pt": "msg",
+              "to": "write-property",
+              "tot": "str"
+          },
+          {
+              "t": "set",
+              "p": "rotation",
+              "pt": "msg",
+              "to": "0",
+              "tot": "num"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 230,
+      "y": 480,
+      "wires": [
+          [
+              "94f9eda8e37e07dd"
+          ]
+      ]
+  },
+  {
+      "id": "e662d631611daad0",
+      "type": "inject",
+      "z": "eb8863180e19d913",
+      "name": "x",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "true",
+      "payloadType": "bool",
+      "x": 110,
+      "y": 480,
+      "wires": [
+          [
+              "3cb1cca8fef0991b"
+          ]
+      ]
+  },
+  {
+      "id": "975322775a5c5859",
+      "type": "change",
+      "z": "eb8863180e19d913",
+      "name": "rt 90",
+      "rules": [
+          {
+              "t": "set",
+              "p": "topic",
+              "pt": "msg",
+              "to": "write-property",
+              "tot": "str"
+          },
+          {
+              "t": "set",
+              "p": "rotation",
+              "pt": "msg",
+              "to": "90",
+              "tot": "num"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 230,
+      "y": 520,
+      "wires": [
+          [
+              "94f9eda8e37e07dd"
+          ]
+      ]
+  },
+  {
+      "id": "847eaad84f42a2a6",
+      "type": "inject",
+      "z": "eb8863180e19d913",
+      "name": "x",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "true",
+      "payloadType": "bool",
+      "x": 110,
+      "y": 520,
+      "wires": [
+          [
+              "975322775a5c5859"
+          ]
+      ]
+  },
+  {
+      "id": "6d92337d1ac45935",
+      "type": "change",
+      "z": "eb8863180e19d913",
+      "name": "rt 180",
+      "rules": [
+          {
+              "t": "set",
+              "p": "topic",
+              "pt": "msg",
+              "to": "write-property",
+              "tot": "str"
+          },
+          {
+              "t": "set",
+              "p": "rotation",
+              "pt": "msg",
+              "to": "180",
+              "tot": "num"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 230,
+      "y": 560,
+      "wires": [
+          [
+              "94f9eda8e37e07dd"
+          ]
+      ]
+  },
+  {
+      "id": "acc22d73051010ad",
+      "type": "inject",
+      "z": "eb8863180e19d913",
+      "name": "x",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "true",
+      "payloadType": "bool",
+      "x": 110,
+      "y": 560,
+      "wires": [
+          [
+              "6d92337d1ac45935"
+          ]
+      ]
+  },
+  {
+      "id": "c7665d72d9ce0d31",
+      "type": "change",
+      "z": "eb8863180e19d913",
+      "name": "rt 270",
+      "rules": [
+          {
+              "t": "set",
+              "p": "topic",
+              "pt": "msg",
+              "to": "write-property",
+              "tot": "str"
+          },
+          {
+              "t": "set",
+              "p": "rotation",
+              "pt": "msg",
+              "to": "270",
+              "tot": "num"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 230,
+      "y": 600,
+      "wires": [
+          [
+              "94f9eda8e37e07dd"
+          ]
+      ]
+  },
+  {
+      "id": "e50dad9e01f7478b",
+      "type": "inject",
+      "z": "eb8863180e19d913",
+      "name": "x",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "true",
+      "payloadType": "bool",
+      "x": 110,
+      "y": 600,
+      "wires": [
+          [
+              "c7665d72d9ce0d31"
+          ]
+      ]
+  },
+  {
+      "id": "85d795383a2fe585",
+      "type": "function",
+      "z": "eb8863180e19d913",
+      "name": "set 4 image urls",
+      "func": "msg = {}\nmsg.topic = \"write-property\";\nmsg.urls=[\n    \"https://www.iconsdb.com/icons/preview/white/test-tube-2-xxl.png\",\n    \"https://www.iconsdb.com/icons/preview/yellow/test-tube-2-xxl.png\",\n    \"https://www.iconsdb.com/icons/preview/blue/test-tube-2-xxl.png\",\n    \"https://www.iconsdb.com/icons/preview/red/test-tube-2-xxl.png\",\n    ]\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 820,
+      "y": 300,
+      "wires": [
+          [
+              "94f9eda8e37e07dd"
+          ]
+      ]
+  },
+  {
+      "id": "7111f5bdbfeb236d",
+      "type": "inject",
+      "z": "eb8863180e19d913",
+      "name": "x",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "true",
+      "payloadType": "bool",
+      "x": 650,
+      "y": 300,
+      "wires": [
+          [
+              "85d795383a2fe585"
+          ]
+      ]
+  },
+  {
+      "id": "39e42ec62214e6d8",
+      "type": "function",
+      "z": "eb8863180e19d913",
+      "name": "set image url of id 1",
+      "func": "msg = {}\nmsg.topic = \"write-property\";\nmsg.imgid=1\nmsg.url=\"https://www.iconsdb.com/icons/preview/green/test-tube-2-xxl.png\";\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 840,
+      "y": 340,
+      "wires": [
+          [
+              "94f9eda8e37e07dd"
+          ]
+      ]
+  },
+  {
+      "id": "da7f6e8c608507e2",
+      "type": "inject",
+      "z": "eb8863180e19d913",
+      "name": "x",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "true",
+      "payloadType": "bool",
+      "x": 650,
+      "y": 340,
+      "wires": [
+          [
+              "39e42ec62214e6d8"
+          ]
+      ]
+  },
+  {
+      "id": "4e894d8a81948145",
+      "type": "function",
+      "z": "eb8863180e19d913",
+      "name": "set image url of id 3",
+      "func": "msg = {}\nmsg.topic = \"write-property\";\nmsg.payload='';\nmsg.imgid=3\nmsg.url=\"https://www.iconsdb.com/icons/preview/orange/test-tube-2-xxl.png\";\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 840,
+      "y": 380,
+      "wires": [
+          [
+              "94f9eda8e37e07dd"
+          ]
+      ]
+  },
+  {
+      "id": "8b797e57ec089816",
+      "type": "inject",
+      "z": "eb8863180e19d913",
+      "name": "x",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "true",
+      "payloadType": "bool",
+      "x": 650,
+      "y": 380,
+      "wires": [
+          [
+              "4e894d8a81948145"
+          ]
+      ]
+  },
+  {
+      "id": "b026acca17ddc48c",
+      "type": "blynk-iot-out-set-property",
+      "z": "eb8863180e19d913",
+      "name": "",
+      "pin": "10",
+      "pinmode": 0,
+      "prop": "bycode",
+      "client": "8c06e199.b82b28",
+      "x": 940,
+      "y": 540,
+      "wires": []
+  },
+  {
+      "id": "9a11a92c2232e6b9",
+      "type": "function",
+      "z": "eb8863180e19d913",
+      "name": "set url 12",
+      "func": "msg = {}\nmsg.topic = \"write-property\";\nmsg.payload='';\nmsg.imgid=5\nmsg.url=\"https://www.iconsdb.com/icons/preview/orange/test-tube-2-xxl.png\";\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 720,
+      "y": 600,
+      "wires": [
+          [
+              "b026acca17ddc48c"
+          ]
+      ]
+  },
+  {
+      "id": "a252a7fb47b67940",
+      "type": "inject",
+      "z": "eb8863180e19d913",
+      "name": "x",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "true",
+      "payloadType": "bool",
+      "x": 580,
+      "y": 600,
+      "wires": [
+          [
+              "9a11a92c2232e6b9"
+          ]
+      ]
+  },
+  {
+      "id": "c427eefe10d0af84",
+      "type": "function",
+      "z": "eb8863180e19d913",
+      "name": "set urls",
+      "func": "msg = {}\nmsg.topic = \"bycode\";\nmsg.payload = \"gg\";\nmsg.urls=[\n    \"https://www.iconsdb.com/icons/preview/white/test-tube-2-xxl.png\",\n    \"https://www.iconsdb.com/icons/preview/yellow/test-tube-2-xxl.png\",\n    \"https://www.iconsdb.com/icons/preview/blue/test-tube-2-xxl.png\",\n    \"https://www.iconsdb.com/icons/preview/red/test-tube-2-xxl.png\",\n    \"https://www.iconsdb.com/icons/preview/white/test-tube-2-xxl.png\",\n    \"https://www.iconsdb.com/icons/preview/yellow/test-tube-2-xxl.png\",\n    \"https://www.iconsdb.com/icons/preview/blue/test-tube-2-xxl.png\",\n    \"https://www.iconsdb.com/icons/preview/red/test-tube-2-xxl.png\",\n    \"https://www.iconsdb.com/icons/preview/white/test-tube-2-xxl.png\",\n    \"https://www.iconsdb.com/icons/preview/yellow/test-tube-2-xxl.png\",\n    \"https://www.iconsdb.com/icons/preview/blue/test-tube-2-xxl.png\",\n    \"https://www.iconsdb.com/icons/preview/red/test-tube-2-xxl.png\",\n    ]\nreturn msg;",
+      "outputs": 1,
+      "noerr": 0,
+      "x": 720,
+      "y": 540,
+      "wires": [
+          [
+              "b026acca17ddc48c"
+          ]
+      ]
+  },
+  {
+      "id": "7dc0a38e86a16311",
+      "type": "inject",
+      "z": "eb8863180e19d913",
+      "name": "x",
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "true",
+      "payloadType": "bool",
+      "x": 580,
+      "y": 540,
+      "wires": [
+          [
+              "c427eefe10d0af84"
+          ]
+      ]
+  },
+  {
+      "id": "eae59fe53d90b61b",
+      "type": "comment",
+      "z": "eb8863180e19d913",
+      "name": "Example Image Gallery widget",
+      "info": "",
+      "x": 500,
+      "y": 40,
+      "wires": []
+  },
+  {
+      "id": "d8bc1eb61887715d",
+      "type": "comment",
+      "z": "eb8863180e19d913",
+      "name": "Change opacity %",
+      "info": "",
+      "x": 130,
+      "y": 80,
+      "wires": []
+  },
+  {
+      "id": "77c199c71c9beef5",
+      "type": "comment",
+      "z": "eb8863180e19d913",
+      "name": "Change scale %",
+      "info": "",
+      "x": 120,
+      "y": 260,
+      "wires": []
+  },
+  {
+      "id": "9776bca8f741bcc1",
+      "type": "comment",
+      "z": "eb8863180e19d913",
+      "name": "Rotate deg",
+      "info": "",
+      "x": 100,
+      "y": 440,
+      "wires": []
+  },
+  {
+      "id": "b4060bb67479a7d6",
+      "type": "comment",
+      "z": "eb8863180e19d913",
+      "name": "Change image to display",
+      "info": "",
+      "x": 150,
+      "y": 660,
+      "wires": []
+  },
+  {
+      "id": "9593d5a3a1ffdb67",
+      "type": "comment",
+      "z": "eb8863180e19d913",
+      "name": "Set image urls ",
+      "info": "",
+      "x": 650,
+      "y": 260,
+      "wires": []
+  },
+  {
+      "id": "0251cb6cc67b1e66",
+      "type": "comment",
+      "z": "eb8863180e19d913",
+      "name": "Set image urls alternative - Property node ",
+      "info": "",
+      "x": 680,
+      "y": 480,
+      "wires": []
+  },
+  {
+      "id": "8c06e199.b82b28",
+      "type": "blynk-iot-client",
+      "name": "Blynk IoT Example",
+      "path": "blynk.cloud",
+      "key": "your-auth-token-here",
+      "tmpl": "your-template-id-here",
+      "dbg_all": true,
+      "dbg_log": false,
+      "dbg_prop": false,
+      "dbg_sync": false,
+      "dbg_low": true,
+      "dbg_pins": "",
+      "multi_cmd": true,
+      "enabled": true
+  }
+]
