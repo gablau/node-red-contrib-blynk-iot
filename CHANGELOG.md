@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.1] - 2025-01-19
+
+### Changed
+- Updated dependencies
+
 ## [1.0.0] - 2023-01-28
 
 ### Added
@@ -52,6 +57,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Removed unsupported node - * Notify *, * Email *, * Bridge *, * Table *
 - Removed Proxy in configuration node  
 
-[Unreleased]: https://github.com/gablau/node-red-contrib-blynk-ws/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/gablau/node-red-contrib-blynk-ws/compare/1.0.1...HEAD
+[1.0.1]: https://github.com/gablau/node-red-contrib-blynk-ws/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/gablau/node-red-contrib-blynk-ws/compare/0.2.0...1.0.0
 [0.2.0]: https://github.com/gablau/node-red-contrib-blynk-ws/compare/0.1.0...0.2.0
