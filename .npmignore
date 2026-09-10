@@ -67,7 +67,38 @@ typings/
 # dotenv environment variables file
 .env
 
+### AI assistant tooling ###
+.claude/
+.claude.json
+CLAUDE.md
+CLAUDE.local.md
+AGENTS.md
+.mcp.json
+.cursor/
+.cursorrules
+.cursorignore
+.aider*
+.windsurf/
+.windsurfrules
+.continue/
+.codeium/
+.tabnine/
+.gemini/
+GEMINI.md
+.roo/
+.roomodes
+.cline/
+.clinerules
+.opencode/
+opencode.json
+.specstory/
+.aws/amazonq/
+.amazonq/
+
 # custom rules
 docs/
 package-lock.json
 .npmignore
+.github/
+.vscode/
+eslint.config.mjs

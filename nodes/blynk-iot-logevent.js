@@ -1,5 +1,3 @@
-const blynkUtil = require('../libs/blynk-util.js');
-
 module.exports = (RED) => {
   function BlynkLogEventNode(n) {
     RED.nodes.createNode(this, n);
@@ -12,7 +10,7 @@ module.exports = (RED) => {
     this.blynkClient = RED.nodes.getNode(this.client);
     if (this.blynkClient) {
       this.blynkClient.registerInputNode(this);
-      this.blynkClient.on('status-connecting', () => { // eslint-disable-line no-shadow
+      this.blynkClient.on('status-connecting', () => {
         node.status({
           fill: 'yellow',
           shape: 'dot',

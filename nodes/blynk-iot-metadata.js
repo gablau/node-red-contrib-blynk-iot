@@ -1,5 +1,3 @@
-const blynkUtil = require('../libs/blynk-util.js');
-
 module.exports = (RED) => {
   function BlynkMetadataNode(n) {
     RED.nodes.createNode(this, n);
@@ -12,7 +10,7 @@ module.exports = (RED) => {
     this.blynkClient = RED.nodes.getNode(this.client);
     if (this.blynkClient) {
       this.blynkClient.registerInputNode(this);
-      this.blynkClient.on('status-connecting', () => { // eslint-disable-line no-shadow
+      this.blynkClient.on('status-connecting', () => {
         node.status({
           fill: 'yellow',
           shape: 'dot',
@@ -83,7 +81,7 @@ module.exports = (RED) => {
           node.blynkClient.sendMeta(action, metaname);
         } else { // set
           if (msg.hasOwnProperty('value')) {
-            value = RED.util.ensureString(msg.value);
+            const value = RED.util.ensureString(msg.value);
             node.blynkClient.sendMeta(action, metaname, value);
           } else {
             node.warn('missing value');

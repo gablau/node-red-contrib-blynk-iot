@@ -17,7 +17,7 @@ module.exports = (RED) => {
     const node = this;
     // compatibility: enable config node from old version < 0.8.0 library
     if (n.enabled === undefined) {
-      n.enabled = true; // eslint-disable-line no-param-reassign
+      n.enabled = true;
     }
     // Create a RED node
     RED.nodes.createNode(this, n);
@@ -102,7 +102,7 @@ module.exports = (RED) => {
         node.log(`Reconnect in ${node.RECONNECT_TIMEOUT_SECONDS} seconds...`);
         clearTimeout(node.reconnect_timeout);
         node.reconnect_timeout = setTimeout(() => {
-          startconn(); // eslint-disable-line no-use-before-define
+          startconn();
         }, node.RECONNECT_TIMEOUT_SECONDS * 1000); // try to reconnect
       }
     }

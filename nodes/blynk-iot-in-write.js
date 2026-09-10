@@ -14,7 +14,7 @@ module.exports = (RED) => {
     if (this.blynkClient) {
       this.blynkClient.registerInputNode(this);
 
-      this.blynkClient.on('status-connecting', () => { // eslint-disable-line no-shadow
+      this.blynkClient.on('status-connecting', () => {
         node.status({
           fill: 'yellow',
           shape: 'dot',

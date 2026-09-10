@@ -13,7 +13,7 @@ module.exports = (RED) => {
     this.blynkClient = RED.nodes.getNode(this.client);
     if (this.blynkClient) {
       this.blynkClient.registerInputNode(this);
-      this.blynkClient.on('status-connecting', () => { // eslint-disable-line no-shadow
+      this.blynkClient.on('status-connecting', () => {
         node.status({
           fill: 'yellow',
           shape: 'dot',

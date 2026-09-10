@@ -10,7 +10,7 @@ module.exports = (RED) => {
     if (this.blynkClient) {
       this.blynkClient.registerGenericNode(this, 'LCD');
 
-      this.blynkClient.on('status-connecting', () => { // eslint-disable-line no-shadow
+      this.blynkClient.on('status-connecting', () => {
         node.status({
           fill: 'yellow',
           shape: 'dot',

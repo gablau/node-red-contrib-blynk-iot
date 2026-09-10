@@ -6,6 +6,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-09-11
+
+### Changed
+
+- Updated dependencies
+- Migrated linting to ESLint 10 flat config (`eslint.config.mjs`); `eslint-config-airbnb-base` replaced by `@eslint/js`, `eslint-plugin-json` by `@eslint/json`, `eslint-plugin-html` by `@html-eslint`
+- Removed `eslint-plugin-import`, `eslint-plugin-progress` and the legacy `.eslintrc.json` / `.eslintignore`
+
+### Fixed
+
+- `lint` npm script now runs on Windows
+- Useless variable assignment in `blynk-lib.js` reported by ESLint
+- Undeclared `value` assignment (implicit global) in the *Metadata* node
+- Removed unused `blynk-util` import in the *Metadata* and *Log Event* nodes
+
 ## [1.0.1] - 2025-01-19
 
 ### Changed
@@ -57,7 +72,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Removed unsupported node - * Notify *, * Email *, * Bridge *, * Table *
 - Removed Proxy in configuration node  
 
-[Unreleased]: https://github.com/gablau/node-red-contrib-blynk-ws/compare/1.0.1...HEAD
+[Unreleased]: https://github.com/gablau/node-red-contrib-blynk-ws/compare/1.0.2...HEAD
+[1.0.2]: https://github.com/gablau/node-red-contrib-blynk-ws/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/gablau/node-red-contrib-blynk-ws/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/gablau/node-red-contrib-blynk-ws/compare/0.2.0...1.0.0
 [0.2.0]: https://github.com/gablau/node-red-contrib-blynk-ws/compare/0.1.0...0.2.0

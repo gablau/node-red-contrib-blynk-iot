@@ -69,7 +69,7 @@ const blynkCmd = function blynkCmd(msgType, vals, forceMsgId) {
 
 const sendRsp = function sendRsp(msgType, msgId, msgLen, msgData) {
   const data = msgData || '';
-  let msg = null;
+  let msg;
   if (msgType === MsgType.RSP) {
     msg = this.blynkCmd(msgType, msgLen, msgId);
   } else {
@@ -172,9 +172,9 @@ const processCommand = function processCommand(cmd) {
         if (cmd.status !== MsgStatus.OK) {
           // handle not ok response message
           let error = false;
-          for (const k in MsgStatus) {// eslint-disable-line 
-            if (MsgStatus.hasOwnProperty(k)) { // eslint-disable-line
-              if (cmd.status == MsgStatus[k]) error = true; // eslint-disable-line
+          for (const k in MsgStatus) {
+            if (MsgStatus.hasOwnProperty(k)) {
+              if (cmd.status == MsgStatus[k]) error = true;
             }
           }
           if (error) {

@@ -1,9 +1,9 @@
 {
   "name": "node-red-contrib-blynk-iot",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Node Red integration with new Blynk IoT Platform",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint \"{libs,nodes}/**/*.{js,json,html}\"",
+    "lint": "eslint \"{libs,nodes}/**/*.{js,json,html}\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,12 +27,12 @@
     "utf8": "^3.0.0"
   },
   "devDependencies": {
-    "eslint": "^8.x.x",
-    "eslint-config-airbnb-base": "^15.x.x",
-    "eslint-plugin-html": "^7.x.x",
-    "eslint-plugin-import": "^2.26.x",
-    "eslint-plugin-json": "^3.x.x",
-    "eslint-plugin-progress": "github:gablau/eslint-plugin-progress"
+    "@eslint/js": "^10.x.x",
+    "@eslint/json": "^2.x.x",
+    "@html-eslint/eslint-plugin": "^0.65.x",
+    "@html-eslint/parser": "^0.65.x",
+    "eslint": "^10.x.x",
+    "globals": "^17.x.x"
   },
   "node-red": {
     "version": ">=2.0.0",
